@@ -29,10 +29,23 @@ prepareDF<-function(filename) {
 
 makePlot<-function(pngName) {
         
-        
-        ## plot 3
-        
+        ## plot 4 - multi
         png(file=pngName,width=480,height=480)
+        par(mfcol = c(2,2))
+        
+        
+        ## first panel
+        with(electric.df, {
+                plot(x=DateTime, y=Global_active_power, xlab="", 
+                     ylab="Global Active Power", type="n")
+                lines(x=DateTime, y=Global_active_power)
+        })
+        
+        
+        
+        
+        
+        ## second panel
         with(electric.df, {
                 plot(x=c(DateTime,DateTime,DateTime), 
                      y=c(Sub_metering_1,Sub_metering_2,Sub_metering_3), 
@@ -53,9 +66,31 @@ makePlot<-function(pngName) {
         })
         
         
+        ## third panel
+        with(electric.df, {
+                plot(x=DateTime, 
+                     y=Voltage, 
+                     xlab="datetime", ylab="Voltage", type="n")
+                lines(x=DateTime, 
+                      y=Voltage, col = "black")
+                
+
+        })
+        
+        
+        ## fourth panel
+        with(electric.df, {
+                plot(x=DateTime, 
+                     y=Global_reactive_power, 
+                     xlab="datetime", type="n")
+                lines(x=DateTime, 
+                      y=Global_reactive_power, col = "black")
+                
+        })
+        
+        
         dev.off()
 }
-
 
 
 
@@ -68,5 +103,5 @@ download("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_
 
 electric.df<-prepareDF("household_power_consumption.txt")
 
-makePlot("plot3.png")
+makePlot("plot4.png")
 

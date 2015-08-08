@@ -15,7 +15,7 @@ download<-function(url, filename) {
 prepareDF<-function(filename) {
         ## read the table
         df <- read.table(filename, sep=";", na.strings ="?",
-                                  colClasses=c("character","character",rep("numeric",7)),header=T)
+                         colClasses=c("character","character",rep("numeric",7)),header=T)
         
         
         ## combine the date and time into a class
@@ -29,15 +29,19 @@ prepareDF<-function(filename) {
 
 makePlot<-function(pngName) {
         
-                ## plot 2
-                with(electric.df,plot(x=DateTime, y=Global_active_power, xlab="", 
-                     ylab="Global Active Power (kilowatts)", type="n"))
-                with(electric.df,lines(x=DateTime, y=Global_active_power))
-                
-                dev.copy(png,pngName)
-                dev.off()
-                
-
+        ## plot 2
+        png(file=pngName,width=480,height=480)
+        
+        with(electric.df, {
+                plot(x=DateTime, y=Global_active_power, xlab="", 
+                     ylab="Global Active Power (kilowatts)", type="n")
+                lines(x=DateTime, y=Global_active_power)
+        })
+        
+        
+        dev.off()
+        
+        
 }
 
 
@@ -48,7 +52,7 @@ makePlot<-function(pngName) {
 
 
 download("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip","household_power_consumption.txt")
- 
+
 electric.df<-prepareDF("household_power_consumption.txt")
 
 makePlot("plot2.png")

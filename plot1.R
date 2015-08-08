@@ -30,10 +30,12 @@ prepareDF<-function(filename) {
 makePlot<-function(pngName) {
         
         ## plot 1
+        png(file=pngName,width=480,height=480)
+        
         with(electric.df, hist(Global_active_power,xlab="Global Active Power (kilowatts)",
                                main="Global Active Power",col="red"))
         
-        dev.copy(png,pngName)
+        
         dev.off()
         
 }
