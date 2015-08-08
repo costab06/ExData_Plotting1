@@ -1,3 +1,23 @@
+README.md
+
+Assignment 1 from Exploratory Data Analysis
+
+This repo contains 4 R scripts for creating the specified plots.  Each script downloads the data, 
+creates the necessary dataframe, and creates the plot, so each can be run independently.  
+
+The scripts are all similar - they leverage
+lubridate and dplyr packages for manipulating the data.  They use the base plotting capabilities.
+The code is very straight forward.
+
+Below is the requirments from the assignments:
+
+
+
+
+
+
+
+
 ## Introduction
 
 This assignment uses data from
